@@ -1,0 +1,89 @@
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --accent: #22c55e; /* verde Android */
+  --accent2: #3b82f6; /* azul vivo */
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --radius: 16px;
+  --shadow: 0 8px 20px rgba(0,0,0,0.4);
+  font-family: 'Press Start 2P', monospace, system-ui;
+}
+
+body {
+  margin: 0;
+  padding: 40px 16px;
+  background: linear-gradient(160deg, #0f172a 0%, #1e293b 100%);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(34,197,94,0.6);
+}
+
+.descripcion {
+  max-width: 800px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+.graficas {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 900px;
+  min-height: 500px;
+}
+
+.grafica-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.grafica-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.6);
+}
+
+.grafica-card h2 {
+  font-size: 14px;
+  margin: 0 0 12px;
+  color: var(--accent2);
+  text-transform: uppercase;
+}
+
+.grafica-placeholder {
+  flex: 1;
+  width: 100%;
+  min-height: 500px;
+  border-radius: 12px;
+  border: 2px dashed var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--muted);
+  background: rgba(255,255,255,0.02);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  h1 { font-size: 18px; }
+  .descripcion { font-size: 12px; }
+}
