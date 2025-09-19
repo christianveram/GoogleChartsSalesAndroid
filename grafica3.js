@@ -28,12 +28,11 @@ function handleResponse3(response) {
   formatter.format(data, 1);
 
   var options = {
-    title: 'Distribución de ventas globales por región',
     pieHole: 0.5,
     slices: { 0: { color: '#34A853' }, 1: { color: '#3B82F6' }, 2: { color: '#F59E0B' } },
     backgroundColor: window.DASHBOARD_CONFIG.CHART_BACKGROUND,
     legend: { position: 'right', textStyle: { color: '#000000', fontSize: 14 } },
-    chartArea: { left: '10%', top: 50, width: '80%', height: '80%' },
+    chartArea: { left: '10%', top: 40, width: '80%', height: '80%' },
     pieSliceText: 'value',
     pieSliceTextStyle: { fontSize: 12, color: '#fff' },
     tooltip: { text: 'both', textStyle: { fontSize: 12 } }

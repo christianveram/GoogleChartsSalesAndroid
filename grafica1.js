@@ -56,17 +56,16 @@ function handleQueryResponse(response) {
     ]);
   }
 
-  // Ordenar por % de 5★ (descendente)
+  // Ordenar por % de descendente
   var view = new google.visualization.DataView(data);
   view.setRows(view.getFilteredRows([{column: 1, sortOrder: 'descending'}]));
 
   var options = {
-    title: 'Distribución de ratings por categoría (%)',
     titleTextStyle: { color: '#000', fontSize: 18, bold: true },
     width: '100%',
     height: 500,
     backgroundColor: window.DASHBOARD_CONFIG.CHART_BACKGROUND,
-    chartArea: { left: 180, top: 70, width: '70%', height: '75%' },
+    chartArea: { left: 180, top: 20, width: '70%', height: '75%' },
     hAxis: {
       title: 'Porcentaje de ratings (%)',
       textStyle: { color: '#555' },
@@ -80,7 +79,7 @@ function handleQueryResponse(response) {
     },
     colors: ['#4CAF50', '#8BC34A', '#FFC107', '#FF9800', '#F44336'],
     isStacked: true,
-    legend: { position: 'top', textStyle: { color: '#000', fontSize: 13 } },
+    legend: { position: 'bottom', textStyle: { color: '#000', fontSize: 13 } },
     bar: { groupWidth: '70%' },
     annotations: {
       textStyle: {
@@ -90,9 +89,9 @@ function handleQueryResponse(response) {
         auraColor: 'transparent'
       },
       stem: {
-        length: 0 // ✅ Clave: elimina el tallo para que el texto quede centrado dentro del segmento
+        length: 0 // 
       },
-      alwaysOutside: false // ✅ Permite que se muestre dentro de la barra
+      alwaysOutside: false //
     }
   };
 

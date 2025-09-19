@@ -117,7 +117,6 @@ function mostrarTop10PorCategoria(categoria) {
 
   var maxRank = Math.max(...juegosFiltrados.map(j => j.rank)) + 10;
   juegosFiltrados.forEach(juego => {
-    // ✅ ¡Aquí está el cambio clave!
     var tooltip = `
       <div style="padding:8px 12px; font-family:Arial; font-size:13px; background:#333; color:#f0f0f0; border-radius:4px; white-space:nowrap;">
         Descargas: ${formatInstalls(juego.installs)}
@@ -127,7 +126,7 @@ function mostrarTop10PorCategoria(categoria) {
   });
 
   var options = {
-    title: `Top 10 en "${categoria}"`,
+    title: `${categoria}`,
     titleTextStyle: { color: '#000', fontSize: 16, bold: true },
     width: '100%',
     height: 500,

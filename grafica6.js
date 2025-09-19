@@ -33,12 +33,11 @@ function handleResponse6(response) {
   formatter.format(data, 2);
 
   var options = {
-    title: 'User Rating vs Critic Rating por Categoría',
     titleTextStyle: { color: '#000', fontSize: 18, bold: true },
     width: 900,
     height: 600,
     backgroundColor: window.DASHBOARD_CONFIG.CHART_BACKGROUND,
-    chartArea: { left: 180, top: 70, width: '70%', height: '75%' },
+    chartArea: { left: 180, top: 50, width: '70%', height: '75%' },
     hAxis: {
       title: 'Rating Promedio (1-5)',
       minValue: 0,

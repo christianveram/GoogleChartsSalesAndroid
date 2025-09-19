@@ -41,12 +41,11 @@ function handleResponse4(response) {
   formatter.format(data, 3);
 
   var options = {
-    title: 'Contribución regional por categoría',
     titleTextStyle: { color: '#000', fontSize: 18, bold: true },
     width: 900,
     height: 600,
     backgroundColor: window.DASHBOARD_CONFIG.CHART_BACKGROUND,
-    chartArea: { left: 100, top: 70, width: '80%', height: '70%' },
+    chartArea: { left: 100, top: 40, width: '80%', height: '70%' },
     hAxis: {
       title: 'Categoría',
       textStyle: { color: '#555' },
@@ -61,7 +60,7 @@ function handleResponse4(response) {
     },
     colors: ['#34A853', '#3B82F6', '#F59E0B'],
     legend: { position: 'top', textStyle: { color: '#000', fontSize: 14 } },
-    isStacked: true, // ✅ Clave: apila las regiones
+    isStacked: true, // 
     pointSize: 6,
     lineWidth: 3
   };

@@ -7,7 +7,7 @@ function drawChart2() {
   query.send(handleQueryResponse2);
 }
 
-// ✅ Función para formatear números con separador de miles (punto)
+// Función para formatear números con separador de miles (punto)
 function formatWithThousands(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
@@ -39,12 +39,11 @@ function handleQueryResponse2(response) {
         return formatted + 'M'; // Ej: "7.000M"
       },
       type: "string",
-      role: "annotation" // ✅ Etiqueta
+      role: "annotation" // Etiqueta
     }
   ]);
 
   var options = {
-    title: 'Número de instalaciones por categoría',
     width: 900,
     height: 600,
     titleTextStyle: { color: '#000000', fontSize: 20, bold: true },
@@ -53,7 +52,7 @@ function handleQueryResponse2(response) {
       minValue: 0,
       textStyle: { color: '#555' },
       titleTextStyle: { bold: true, color: '#000000' },
-      format: '#,##0\'M\'' // ✅ También formatea el eje con separador (si Google Charts lo permite)
+      format: '#,##0\'M\'' //  También formatea el eje con separador (si Google Charts lo permite)
     },
     vAxis: { 
       title: 'Categoría',
@@ -64,18 +63,18 @@ function handleQueryResponse2(response) {
     colors: ['#34A853'],
     bar: { groupWidth: '60%' },
     backgroundColor: window.DASHBOARD_CONFIG.CHART_BACKGROUND,
-    chartArea: { left: 180, top: 70, width: '65%', height: '75%' },
+    chartArea: { left: 180, top: 20, width: '65%', height: '75%' },
     annotations: {
       textStyle: {
         fontSize: 13,
-        color: '#000',        // ✅ Texto en negro
+        color: '#000',        //  Texto en negro
         bold: true,
         auraColor: 'none'
       },
       stem: {
-        length: 0             // ✅ Sin tallo
+        length: 0             // Sin tallo
       },
-      alwaysOutside: true     // ✅ Siempre fuera de la barra
+      alwaysOutside: true     // Siempre fuera de la barra
     }
   };
 
