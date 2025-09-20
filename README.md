@@ -42,7 +42,29 @@ Se agruparon los ratings por categoría, luego se calculó los porcentajes y se 
 Se presenta la cantidad de instalaciones por categória con el objetivo de identificar las categórias mas populares en términos de descargas, lo cual sirve para apreciar las catégorias mas populares y cuales son más de nicho, información relevante para el desarrollo de nuevos videojuegos.
 \\
 * Consulta: SELECT I, SUM(D) GROUP BY I ORDER BY SUM(D) DESC
-
+---
 # Grafico 3: Ventas por region.
 
-Se realiza un grafico de pastel con la cantidad de ventas de cada región, con el objetivo de identificar que regiones son mas relevantes para la venta de videojuegos 
+Se realiza un grafico de pastel con la cantidad de ventas de cada región, con el objetivo de identificar que regiones son mas relevantes para la venta de videojuegos, lo cual es util para determinar el presupuesto para estrategias de marketing. 
+\\
+* Consulta: SELECT SUM(P), SUM(Q), SUM(R)
+---
+# Gráfico 4: Contribución regional por categoría 
+
+Mediante un gráfico de área apilada se visualiza las contribución de cada región en cada categória, lo cual es de relevancia para conocer las regiones donde sería viable desarrollar un videojuego, como por ejemplo los juegos de rol en Japón.
+\\
+* Consulta: SELECT I, SUM(P), SUM(Q), SUM(R) GROUP BY I
+
+---
+# Grafico 5: Top 10 juegos mejor rankeados por categoría
+
+Mediante un grafico de barras se elige una categoría y se muestra el top 10 de juegos mas descargados de esa categoría, mediante el cual se puede identificar que juegos son referentes en cada una de las categórias e identificar las prácticas que los posicionan líderes.\\
+
+* Consulta: SELECT I, A, B, D WHERE B IS NOT NULL AND I != "" AND D IS NOT NULL
+---
+
+# Gráfico 6: Crítica de usuarios y medios.
+
+Se crea un gráfico de barras apiladas para evidenciar las diferencias entre las críticas de usuarios y medios en distintas categorías, esto con el objetivo de identificar sectores donde lás crítícas sean dispares e indiquen una posible oportunidad de negocio en sectores donde el promedio de críticas de usuarios o medios sea baja.
+
+* Consulta: SELECT I, AVG(T), AVG(U) GROUP BY I ORDER BY AVG(T) DESC
