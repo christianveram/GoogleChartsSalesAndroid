@@ -48,9 +48,11 @@ function handleResponse4(response) {
     chartArea: { left: 100, top: 40, width: '80%', height: '70%' },
     hAxis: {
       title: 'Categoría',
-      textStyle: { color: '#555' },
+      textStyle: { color: '#555', fontSize: 10 },
       titleTextStyle: { bold: true, color: '#000' },
-      slantedTextAngle: 45
+      slantedTextAngle: 45,
+      slantedText: true, // Forzamos que el texto esté inclinado
+      maxTextLines: 1   // Le decimos que no use múltiples líneas
     },
     vAxis: {
       title: 'Ventas (en millones)',
@@ -60,7 +62,7 @@ function handleResponse4(response) {
     },
     colors: ['#34A853', '#3B82F6', '#F59E0B'],
     legend: { position: 'top', textStyle: { color: '#000', fontSize: 14 } },
-    isStacked: true, // 
+    isStacked: true,
     pointSize: 6,
     lineWidth: 3
   };

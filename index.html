@@ -1,70 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Android Games Sales</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Android Games Sales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav.css"> 
 
-  <!--  Librería de Google Charts -->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-  <!-- Scripts de gráficas -->
-  <script src="grafica1.js"></script>
-  <script src="grafica2.js"></script>
-  <script src="grafica3.js"></script>
-  <script src="grafica4.js"></script>
-  <script src="grafica5.js"></script>
-  <script src="grafica6.js"></script>
+    <script src="grafica1.js"></script>
+    <script src="grafica2.js"></script>
+    <script src="grafica3.js"></script>
+    <script src="grafica4.js"></script>
+    <script src="grafica5.js"></script>
+    <script src="grafica6.js"></script>
 
-  <!-- Script principal -->
-  <script src="main.js"></script>
+    <script src="main.js"></script>
+    <script src="menu.js"></script> 
 </head>
 
 <body>
-  <h1>Ventas de videojuegos de Android</h1>
-  <div class="descripcion">
-    <p>Dashboard de análisis de ventas por categoría y región.</p>
-  </div>
-
-  <div class="graficas">
-    <div class="grafica-card">
-      <h2>Gráfica 1: Ventas Globales por Ranking</h2>
-      <div id="grafica1" class="grafica-placeholder">Cargando...</div>
+    <h1>Ventas de videojuegos de Android</h1>
+    <div class="descripcion">
+        <p>Dashboard de análisis de ventas por categoría y región.</p>
     </div>
 
-    <div class="grafica-card">
-      <h2>Gráfica 2: Instalaciones por Categoría</h2>
-      <div id="grafica2" class="grafica-placeholder">Cargando...</div>
-    </div>
+    <nav class="graficas-menu">
+        <button class="menu-item active" data-target="grafica1">Ventas Globales</button>
+        <button class="menu-item" data-target="grafica2">Instalaciones</button>
+        <button class="menu-item" data-target="grafica3">Ventas por Región</button>
+        <button class="menu-item" data-target="grafica4">Ventas por Región y Categoría</button>
+        <button class="menu-item" data-target="grafica5">Top juego por categoría</button>
+        <button class="menu-item" data-target="grafica6">Rating</button>
+    </nav>
 
-    <div class="grafica-card">
-      <h2>Gráfica 3: Ventas por Región (Global)</h2>
-      <div id="grafica3" class="grafica-placeholder">Cargando...</div>
-    </div>
+    <div class="graficas-container">
+        <div id="grafica1-container" class="grafica-card">
+            <h2> Ventas Globales por Ranking</h2>
+            <div id="grafica1" class="grafica-placeholder">Cargando...</div>
+        </div>
 
-    <div class="grafica-card">
-      <h2>Gráfica 4: Ventas por Región y Categoría</h2>
-      <div id="grafica4" class="grafica-placeholder">Cargando...</div>
-    </div>
+        <div id="grafica2-container" class="grafica-card" style="display: none;">
+            <h2> Instalaciones por Categoría</h2>
+            <div id="grafica2" class="grafica-placeholder">Cargando...</div>
+        </div>
 
-<div class="grafica-card">
-  <h2>Gráfica 5: Top juego por categoría</h2>
-  <div id="selector-categoria" style="margin: 15px 0; text-align: center;">
-    <label for="categoria-select">Selecciona una categoría: </label>
-    <select id="categoria-select" style="padding: 8px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc;">
-      <option value="">-- Todas las categorías --</option>
-    </select>
-  </div>
-  <div id="grafica5" class="grafica-placeholder">Cargando...</div>
-  <div id="detalle-juego" style="text-align: center; margin-top: 15px; font-size: 14px; color: #eee;"></div>
-</div>
+        <div id="grafica3-container" class="grafica-card" style="display: none;">
+            <h2>Ventas por Región</h2>
+            <div id="selector-categoria" style="margin: 15px 0; text-align: center;">
+                <label for="grafica3-categoria-select">Selecciona una categoría: </label>
+                <select id="grafica3-categoria-select" style="padding: 8px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc;">
+                    <option value="all">-- Todas --</option>
+                </select>
+            </div>
+            <div id="grafica3" class="grafica-placeholder">Cargando...</div>
+        </div>
 
-    <div class="grafica-card">
-      <h2>Rating de usuarios y críticos.</h2>
-      <div id="grafica6" class="grafica-placeholder">Cargando...</div>
+        <div id="grafica4-container" class="grafica-card" style="display: none;">
+            <h2> Ventas por Región y Categoría</h2>
+            <div id="grafica4" class="grafica-placeholder">Cargando...</div>
+        </div>
+
+        <div id="grafica5-container" class="grafica-card" style="display: none;">
+            <h2> Top juego por categoría</h2>
+            <div id="selector-categoria" style="margin: 15px 0; text-align: center;">
+                <label for="categoria-select">Selecciona una categoría: </label>
+                <select id="categoria-select" style="padding: 8px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc;">
+                    <option value="">-- Todas las categorías --</option>
+                </select>
+            </div>
+            <div id="grafica5" class="grafica-placeholder">Cargando...</div>
+            <div id="detalle-juego" style="text-align: center; margin-top: 15px; font-size: 14px; color: #eee;"></div>
+        </div>
+
+        <div id="grafica6-container" class="grafica-card" style="display: none;">
+            <h2>Rating de usuarios y críticos.</h2>
+            <div id="grafica6" class="grafica-placeholder">Cargando...</div>
+        </div>
     </div>
-  </div>
 </body>
 </html>
