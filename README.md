@@ -33,7 +33,7 @@ U: Critic_Ratingç
 
 ## Gráfico 1: Distribución de ratings por categoría (%)
 
-Se agruparon los ratings por categoría, luego se calculó los porcentajes y se creo una visualización de barras apiladas horizontales con el objetivo de identificar que categórias tienen clasificaciones mas polarizadas y pueden resultar una oportunidad de negocio para realizar posibles inversiones.
+Se agruparon los ratings por categoría, luego se calculó los porcentajes y, finalmente, se creó una visualización de barras apiladas horizontales, con el objetivo de identificar que categorías tienen clasificaciones más polarizadas y, por tanto, pueden resultar en una oportunidad de negocio para realizar posibles inversiones.
 \\
 * Consulta: SELECT I, SUM(J), SUM(K), SUM(L), SUM(M), SUM(N) GROUP BY I
 
