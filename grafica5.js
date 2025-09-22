@@ -1,9 +1,10 @@
-// grafica5.js - TOP 10 por categoría + tooltip claro: "Descargas: X M"
+// grafica5.js - TOP 10 por categoría (barras = total de valoraciones)
 
-let todosLosJuegos = []; // Almacena todos los juegos con categoría, rank y installs
+let todosLosJuegos = []; // Almacena todos los juegos con categoría, rank, ratings e installs
 
 function drawChart5() {
-  var queryString = encodeURIComponent('SELECT I, A, B, D WHERE B IS NOT NULL AND I != "" AND D IS NOT NULL');
+  // Incluimos la columna C (total_ratings) en la consulta
+  var queryString = encodeURIComponent('SELECT I, A, B, C, D WHERE B IS NOT NULL AND I != "" AND C IS NOT NULL AND D IS NOT NULL');
   var queryUrl = 'https://docs.google.com/spreadsheets/d/1QS6MigyL_aoYZ3cVMldaiscHftT49OTl/gviz/tq?sheet=Hoja1&headers=1&tq=' + queryString;
 
   var query = new google.visualization.Query(queryUrl);
@@ -23,10 +24,11 @@ function handleResponse5(response) {
     var category = dt.getValue(i, 0);
     var title = dt.getValue(i, 1);
     var rank = parseInt(dt.getValue(i, 2));
-    var installs = parseInt(dt.getValue(i, 3)) || 0;
+    var total_ratings = parseInt(dt.getValue(i, 3)) || 0;
+    var installs = parseInt(dt.getValue(i, 4)) || 0;
 
     if (category && !isNaN(rank)) {
-      todosLosJuegos.push({ category, title, rank, installs });
+      todosLosJuegos.push({ category, title, rank, installs, total_ratings });
     }
   }
 
@@ -101,7 +103,8 @@ function mostrarTop10PorCategoria(categoria) {
 
   var juegosFiltrados = todosLosJuegos
     .filter(j => j.category === categoria)
-    .sort((a, b) => a.rank - b.rank)
+    // Ordenar por número de valoraciones (mayor → menor)
+    .sort((a, b) => b.total_ratings - a.total_ratings)
     .slice(0, 10);
 
   if (juegosFiltrados.length === 0) {
@@ -111,32 +114,34 @@ function mostrarTop10PorCategoria(categoria) {
 
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Juego');
-  data.addColumn('number', 'Ranking');
+  data.addColumn('number', 'Valoraciones');
   data.addColumn({type: 'string', role: 'annotation'});
   data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
 
-  var maxRank = Math.max(...juegosFiltrados.map(j => j.rank)) + 10;
   juegosFiltrados.forEach(juego => {
     var tooltip = `
       <div style="padding:8px 12px; font-family:Arial; font-size:13px; background:#333; color:#f0f0f0; border-radius:4px; white-space:nowrap;">
-        Descargas: ${formatInstalls(juego.installs)}
+         Valoraciones: ${formatInstalls(juego.total_ratings)}<br>
+         Descargas: ${formatInstalls(juego.installs)}<br>
+         Ranking: #${juego.rank}
       </div>
     `;
-    data.addRow([juego.title, maxRank - juego.rank, `#${juego.rank}`, tooltip]);
+    data.addRow([juego.title, juego.total_ratings, formatInstalls(juego.total_ratings), tooltip]);
   });
 
   var options = {
-    title: `${categoria}`,
+    title: `${categoria} - Top 10 por valoraciones`,
     titleTextStyle: { color: '#000', fontSize: 16, bold: true },
     width: '100%',
     height: 500,
     backgroundColor: window.DASHBOARD_CONFIG.CHART_BACKGROUND,
     chartArea: { left: 200, top: 50, width: '65%', height: '80%' },
     hAxis: {
+      title: 'Valoraciones (en millones)',
       textStyle: { color: '#555' },
       titleTextStyle: { bold: true, color: '#000' },
       gridlines: { color: '#eee' },
-      textPosition: 'none'
+      format: 'short' // para que el eje X muestre abreviado (K, M, B)
     },
     vAxis: {
       title: 'Juego',
