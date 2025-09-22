@@ -1,10 +1,10 @@
-// grafica5.js - TOP 10 por categoría (barras = total de valoraciones)
+// grafica5.js - TOP 10 por categoría (barras = total de valoraciones, con precio)
 
-let todosLosJuegos = []; // Almacena todos los juegos con categoría, rank, ratings e installs
+let todosLosJuegos = []; // Almacena todos los juegos con categoría, ratings, installs y precio
 
 function drawChart5() {
-  // Incluimos la columna C (total_ratings) en la consulta
-  var queryString = encodeURIComponent('SELECT I, A, B, C, D WHERE B IS NOT NULL AND I != "" AND C IS NOT NULL AND D IS NOT NULL');
+  // Incluimos la columna H (precio) en la consulta
+  var queryString = encodeURIComponent('SELECT I, A, C, D, H WHERE I != "" AND C IS NOT NULL AND D IS NOT NULL AND H IS NOT NULL');
   var queryUrl = 'https://docs.google.com/spreadsheets/d/1QS6MigyL_aoYZ3cVMldaiscHftT49OTl/gviz/tq?sheet=Hoja1&headers=1&tq=' + queryString;
 
   var query = new google.visualization.Query(queryUrl);
@@ -21,14 +21,14 @@ function handleResponse5(response) {
   todosLosJuegos = [];
 
   for (var i = 0; i < dt.getNumberOfRows(); i++) {
-    var category = dt.getValue(i, 0);
-    var title = dt.getValue(i, 1);
-    var rank = parseInt(dt.getValue(i, 2));
-    var total_ratings = parseInt(dt.getValue(i, 3)) || 0;
-    var installs = parseInt(dt.getValue(i, 4)) || 0;
+    var category = dt.getValue(i, 0);   // I
+    var title = dt.getValue(i, 1);      // A
+    var total_ratings = parseInt(dt.getValue(i, 2)) || 0; // C
+    var installs = parseInt(dt.getValue(i, 3)) || 0;      // D
+    var price = dt.getValue(i, 4) || "Gratis";            // H
 
-    if (category && !isNaN(rank)) {
-      todosLosJuegos.push({ category, title, rank, installs, total_ratings });
+    if (category && title) {
+      todosLosJuegos.push({ category, title, installs, total_ratings, price });
     }
   }
 
@@ -123,7 +123,7 @@ function mostrarTop10PorCategoria(categoria) {
       <div style="padding:8px 12px; font-family:Arial; font-size:13px; background:#333; color:#f0f0f0; border-radius:4px; white-space:nowrap;">
          Valoraciones: ${formatInstalls(juego.total_ratings)}<br>
          Descargas: ${formatInstalls(juego.installs)}<br>
-         Ranking: #${juego.rank}
+         Precio: ${juego.price}
       </div>
     `;
     data.addRow([juego.title, juego.total_ratings, formatInstalls(juego.total_ratings), tooltip]);
@@ -141,7 +141,7 @@ function mostrarTop10PorCategoria(categoria) {
       textStyle: { color: '#555' },
       titleTextStyle: { bold: true, color: '#000' },
       gridlines: { color: '#eee' },
-      format: 'short' // para que el eje X muestre abreviado (K, M, B)
+      format: 'short'
     },
     vAxis: {
       title: 'Juego',
