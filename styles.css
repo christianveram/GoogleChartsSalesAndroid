@@ -14,11 +14,14 @@
 body {
     margin: 0;
     padding: 40px 16px;
-    background: linear-gradient(160deg, #0f172a 0%, #1e293b 100%);
     color: var(--text);
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    /* Fondo con la imagen local */
+    background: url("galaxia.jpg") no-repeat center center fixed;
+    background-size: cover;
 }
 
 h1 {
