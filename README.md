@@ -35,25 +35,25 @@ Las visualizaciones buscan responder una pregunta de negocio y fueron creadas me
 ## Gráfico 1: Distribución de ratings por categoría (%)
 
 Se agruparon los ratings por categoría, luego se calculó los porcentajes y, finalmente, se creó una visualización de barras apiladas horizontales, con el objetivo de identificar que categorías tienen clasificaciones más polarizadas y, por tanto, pueden resultar en una oportunidad de negocio para realizar posibles inversiones.
-\
+
 * Consulta: SELECT I, SUM(J), SUM(K), SUM(L), SUM(M), SUM(N) GROUP BY I
 
 ## Grafico 2: Número de instalaciones por categoría
 
 Se presenta la cantidad de instalaciones por categória con el objetivo de identificar las categórias mas populares en términos de descargas, lo cual sirve para apreciar las catégorias mas populares y cuales son más de nicho, información relevante para el desarrollo de nuevos videojuegos.
-\
+
 * Consulta: SELECT I, SUM(D) GROUP BY I ORDER BY SUM(D) DESC
 
 ## Grafico 3: Ventas por region.
 
 Se realiza un grafico de pastel con la cantidad de ventas de cada región, con el objetivo de identificar que regiones son mas relevantes para la venta de videojuegos, lo cual es util para determinar el presupuesto para estrategias de marketing. 
-\
+
 * Consulta: SELECT SUM(P), SUM(Q), SUM(R)
 
 ## Gráfico 4: Contribución regional por categoría 
 
 Mediante un gráfico de área apilada se visualiza las contribución de cada región en cada categória, lo cual es de relevancia para conocer las regiones donde sería viable desarrollar un videojuego, como por ejemplo los juegos de rol en Japón.
-\
+
 * Consulta: SELECT I, SUM(P), SUM(Q), SUM(R) GROUP BY I
 
 ## Grafico 5: Top 10 juegos mejor rankeados por categoría
