@@ -29,7 +29,7 @@ function handleResponse4(response) {
   }
 
   // Ordenar por US 
-  rows.sort((a, b) => b.us - a.us);
+  rows.sort((a, b) => (b.us + b.eu + b.jp) - (a.us + a.eu + a.jp));
 
   for (var i = 0; i < rows.length; i++) {
     data.addRow([rows[i].categoria, rows[i].us, rows[i].eu, rows[i].jp]);
